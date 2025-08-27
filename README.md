@@ -21,17 +21,17 @@ If you run this locally, the following will need to be installed:
 
 ### Deploying infastructure.
 1. Clone the repository:
-git clone https://github.com/K3NL1U/IaC_bare.git
-cd IaC_bare
+'''git clone https://github.com/K3NL1U/IaC_bare.git
+cd IaC_bare'''
 2. Build Docker image and push to Docker Hub
-docker build -t yourusername/nginx-custom:latest
-docler push yourusername/nginx-custom:latest
+'''docker build -t yourusername/nginx-custom:latest
+docler push yourusername/nginx-custom:latest'''
 3. Initialise Terraform:
-terraform init
+'''terraform init'''
 4. Preview the planned changes, and specify your Docker Hub image:
-terraform plan -var="dockerhub_image=yourusername/nginx-custom:latest"
+'''terraform plan -var="dockerhub_image=yourusername/nginx-custom:latest"'''
 5. Apply the infrastructure:
-terraform apply -var="dockerhub_image=yourusername/nginx-custom:latest"
+'''terraform apply -var="dockerhub_image=yourusername/nginx-custom:latest"'''
 6. After deployment completes, Terraform outputs the ALB DNS name. Open this URL in a browser.
 
 ---
