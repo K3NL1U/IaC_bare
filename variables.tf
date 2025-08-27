@@ -19,7 +19,7 @@ variable "instance_type" {
 variable "dockerhub_image" {
   description = "Docker Hub image name"
   type        = string
-  default     = "k3nl1u/nginx-k3n:latest"
+  default     = "k3nl1u/nginx-k3n:v0.1.0"
 }
 
 variable "asg_min_size" {

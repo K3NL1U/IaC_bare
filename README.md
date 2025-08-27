@@ -12,14 +12,27 @@ Key features:
 
 ---
 
-### More automation
-
-Instead of installing the dependencies, authenticating and deploying manually, we are going to automate it further by having GitHub Actions perform these "actions" for us, triggered by code push.
+### Getting started
 
 If you run this locally, the following will need to be installed:
 - AWS CLI.
 - Terraform.
-And a Docker Hub account to push your image.
+- Docker and Docker Hub account to push your image.
+
+### Deploying infastructure.
+1. Clone the repository:
+git clone https://github.com/K3NL1U/IaC_bare.git
+cd IaC_bare
+2. Build Docker image and push to Docker Hub
+docker build -t yourusername/nginx-custom:latest
+docler push yourusername/nginx-custom:latest
+3. Initialise Terraform:
+terraform init
+4. Preview the planned changes, and specify your Docker Hub image:
+terraform plan -var="dockerhub_image=yourusername/nginx-custom:latest"
+5. Apply the infrastructure:
+terraform apply -var="dockerhub_image=yourusername/nginx-custom:latest"
+6. After deployment completes, Terraform outputs the ALB DNS name. Open this URL in a browser.
 
 ---
 
@@ -34,6 +47,7 @@ And a Docker Hub account to push your image.
 
 ## Next Steps / Enhancements
 
+- Instead of installing the dependencies, authenticating and deploying manually, automate it further by having GitHub Actions perform these "actions" for us, triggered by code push.
 - Autoscaling policies based on CloudWatch metrics.
 - Utilise ECS (fargate containers) for better resource utilisation.
 - Use R53 for custom domain and ACM in conjunction with ALB to secure the traffic with HTTPS.
