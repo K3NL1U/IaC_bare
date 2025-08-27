@@ -28,7 +28,7 @@ cd IaC_bare
 2. Build Docker image and push to Docker Hub
 ```bash
 docker build -t yourusername/nginx-custom:latest
-docler push yourusername/nginx-custom:latest
+docker push yourusername/nginx-custom:latest
 ```
 3. Initialise Terraform:
 ```bash
