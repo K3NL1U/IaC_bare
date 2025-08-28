@@ -2,7 +2,7 @@
 resource "aws_security_group" "alb" {
   name        = "${var.project_name}-alb-sg"
   description = "Security group for ALB"
-  vpc_id     = module.vpc.vpc_id
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     from_port   = 80
@@ -26,12 +26,12 @@ resource "aws_security_group" "alb" {
 resource "aws_security_group" "web" {
   name        = "${var.project_name}-web-sg"
   description = "Security group for web servers"
-  vpc_id     = module.vpc.vpc_id
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
   }
 
@@ -89,7 +89,7 @@ resource "aws_lb_listener" "http" {
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.tg.arn
   }
 }
@@ -123,7 +123,7 @@ resource "aws_autoscaling_group" "asg" {
   max_size             = var.asg_max_size
   desired_capacity     = var.asg_desired_capacity
   vpc_zone_identifier  = module.vpc.public_subnets
-  
+
   health_check_type = "ELB"
   target_group_arns = [aws_lb_target_group.tg.arn]
   force_delete      = true
